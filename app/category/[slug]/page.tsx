@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import type { Category, GuidebookSection, Video } from "@/lib/types";
@@ -48,6 +49,14 @@ async function getGuidebookSections(categoryId: string): Promise<GuidebookSectio
   return (data ?? []) as GuidebookSection[];
 }
 
+async function getSourceVideoTitles(videoIds: string[]): Promise<Map<string, string>> {
+  if (videoIds.length === 0) return new Map();
+
+  const { data, error } = await supabase.from("videos").select("id, title").in("id", videoIds);
+  if (error || !data) return new Map();
+  return new Map(data.map((v: { id: string; title: string }) => [v.id, v.title]));
+}
+
 export async function generateStaticParams() {
   const { data } = await supabase.from("categories").select("slug");
   return (data ?? []).map((c: { slug: string }) => ({ slug: c.slug }));
@@ -65,6 +74,9 @@ export default async function CategoryPage({
     getVideos(category.id),
     getGuidebookSections(category.id),
   ]);
+
+  const allSourceIds = [...new Set(guidebookSections.flatMap((s) => s.source_video_ids))];
+  const sourceVideoTitles = await getSourceVideoTitles(allSourceIds);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
@@ -95,6 +107,18 @@ export default async function CategoryPage({
                 <div className="prose prose-sm max-w-none text-gray-600 whitespace-pre-wrap">
                   {section.content_markdown}
                 </div>
+                {section.source_video_ids.length > 0 && (
+                  <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 border-t border-gray-100 pt-3 text-xs text-gray-400">
+                    <span className="text-gray-400">출처:</span>
+                    {section.source_video_ids.map((id) =>
+                      sourceVideoTitles.has(id) ? (
+                        <Link key={id} href={`/video/${id}`} className="hover:text-brand-600 hover:underline">
+                          {sourceVideoTitles.get(id)}
+                        </Link>
+                      ) : null,
+                    )}
+                  </div>
+                )}
               </article>
             ))}
           </section>

@@ -40,6 +40,7 @@ export interface GuidebookSection {
   slug: string;
   title: string;
   content_markdown: string;
+  source_video_ids: string[];
   sort_order: number;
   is_published: boolean;
   created_at: string;
