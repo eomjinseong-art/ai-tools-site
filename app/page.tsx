@@ -198,7 +198,7 @@ export default async function HomePage({
         <>
           <section className="text-center py-10">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">
-              대한민국 AI 툴, 한눈에 배우기
+              오늘의 AI, 나두 써본다
             </h1>
             <p className="mt-4 text-gray-500 max-w-2xl mx-auto dark:text-gray-400">
               챗GPT부터 미드저니, 커서까지 — 매일 업데이트되는 유튜브 영상을 AI가 요약해
