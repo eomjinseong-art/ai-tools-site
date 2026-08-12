@@ -9,7 +9,8 @@ const PLACEMENT_LABELS: Record<AdPlacement, string> = {
   category_sidebar_2: "요약 패널 광고 2",
   category_sidebar_3: "요약 패널 광고 3",
   category_sidebar_4: "요약 패널 광고 4",
-  video_inline: "영상 상세 인라인",
+  video_inline: "영상 재생창 하단 (요약 패널)",
+  video_list_bottom: "영상 리스트 하단 (10개 목록 아래)",
   guidebook_footer: "가이드북 하단",
 };
 

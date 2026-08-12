@@ -61,6 +61,7 @@ export type AdPlacement =
   | "category_sidebar_3"
   | "category_sidebar_4"
   | "video_inline"
+  | "video_list_bottom"
   | "guidebook_footer";
 
 export const AD_PLACEMENTS: AdPlacement[] = [
@@ -71,6 +72,7 @@ export const AD_PLACEMENTS: AdPlacement[] = [
   "category_sidebar_3",
   "category_sidebar_4",
   "video_inline",
+  "video_list_bottom",
   "guidebook_footer",
 ];
 

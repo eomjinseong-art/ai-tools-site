@@ -56,7 +56,8 @@ export default function TopCarousel({ videos }: { videos: CarouselVideo[] }) {
           <Link
             key={video.id}
             data-tile
-            href={`/category/${video.category_slug}`}
+            href={`/?category=${video.category_slug}&video=${video.id}`}
+            scroll={false}
             className="group relative w-64 shrink-0 snap-start overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
           >
             <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">

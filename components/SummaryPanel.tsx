@@ -35,6 +35,8 @@ export default function SummaryPanel({
         />
       </div>
 
+      <AdBanner placement="video_inline" />
+
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center gap-2">
           <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{video.title}</h2>

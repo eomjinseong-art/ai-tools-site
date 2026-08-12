@@ -12,7 +12,15 @@ export default function Header() {
           </span>
           <span>나두AI</span>
         </Link>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
+          <form action="/" method="GET" className="hidden sm:block">
+            <input
+              type="search"
+              name="q"
+              placeholder="실전 방법 검색 (예: 배경 제거)"
+              className="w-40 md:w-56 rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-brand-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-500"
+            />
+          </form>
           <nav className="flex items-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-300">
             <Link href="/" className="hover:text-brand-600 dark:hover:text-brand-500">
               홈

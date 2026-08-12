@@ -3,8 +3,6 @@ import { supabase } from "@/lib/supabase";
 import type { Category, GuidebookSection } from "@/lib/types";
 import AdBanner from "@/components/AdBanner";
 
-export const revalidate = 3600;
-
 async function getGeneralSections(): Promise<GuidebookSection[]> {
   const { data, error } = await supabase
     .from("guidebook_sections")
