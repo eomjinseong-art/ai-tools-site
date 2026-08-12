@@ -14,5 +14,10 @@ if (!supabaseUrl || !serviceRoleKey) {
 export const supabaseAdmin = createClient(
   supabaseUrl || "https://placeholder.supabase.co",
   serviceRoleKey || "placeholder-service-role-key",
-  { auth: { persistSession: false } },
+  {
+    auth: { persistSession: false },
+    global: {
+      fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
+    },
+  },
 );

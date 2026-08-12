@@ -18,5 +18,11 @@ export const supabase = createClient(
   supabaseAnonKey || "placeholder-anon-key",
   {
     auth: { persistSession: false },
+    // Next.js persists its fetch Data Cache across builds/deployments; without
+    // this, a request made once during an early build (e.g. before some rows
+    // existed) can keep being served from that stale cache indefinitely.
+    global: {
+      fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
+    },
   }
 );
