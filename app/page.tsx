@@ -34,6 +34,16 @@ const TOOL_SITE_URLS: Record<string, string> = {
   "notion-ai": "https://www.notion.com/product/ai",
   figma: "https://www.figma.com",
   cursor: "https://www.cursor.com",
+  gamma: "https://gamma.app",
+  notebooklm: "https://notebooklm.google",
+  "clova-x": "https://clova-x.naver.com",
+  "github-copilot": "https://github.com/features/copilot",
+  lovable: "https://lovable.dev",
+  "adobe-firefly": "https://firefly.adobe.com",
+  veo: "https://deepmind.google/technologies/veo",
+  typecast: "https://typecast.ai",
+  grok: "https://grok.com",
+  genspark: "https://www.genspark.ai",
 };
 
 async function getCategories(): Promise<Category[]> {

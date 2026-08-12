@@ -7,6 +7,7 @@ export interface Category {
   is_trend: boolean;
   sort_order: number;
   click_count: number;
+  target_video_count: number;
   icon_url: string | null;
   created_at: string;
 }
