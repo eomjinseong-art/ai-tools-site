@@ -8,7 +8,7 @@ export default function Header() {
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white text-sm">
             AI
           </span>
-          <span>AI 툴 교육</span>
+          <span>나두AI</span>
         </Link>
         <nav className="flex items-center gap-6 text-sm font-medium text-gray-600">
           <Link href="/" className="hover:text-brand-600">
