@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabase";
-import type { Category, GuidebookSection, Video } from "@/lib/types";
+import type { Category, Video } from "@/lib/types";
 import AdBanner from "@/components/AdBanner";
 import TopCarousel, { type CarouselVideo } from "@/components/TopCarousel";
 import CategoryMenu from "@/components/CategoryMenu";
@@ -7,11 +7,34 @@ import VideoCard from "@/components/VideoCard";
 import SummaryPanel from "@/components/SummaryPanel";
 
 // Always fetch fresh: click counts, admin ad/keyword edits, and newly
-// collected videos/guidebook sections should never be served from a stale
-// cached fetch response.
+// collected videos should never be served from a stale cached fetch response.
 export const dynamic = "force-dynamic";
 
 type SearchVideo = Video & { category_slug: string; category_name: string };
+
+// Official site for each AI tool's category, shown as a "바로가기" link next to
+// the category title. AI 트렌드 has no single tool, so it's intentionally absent.
+const TOOL_SITE_URLS: Record<string, string> = {
+  chatgpt: "https://chat.openai.com",
+  claude: "https://claude.ai",
+  gemini: "https://gemini.google.com",
+  perplexity: "https://www.perplexity.ai",
+  wrtn: "https://wrtn.ai",
+  canva: "https://www.canva.com",
+  midjourney: "https://www.midjourney.com",
+  runway: "https://runwayml.com",
+  higgsfield: "https://higgsfield.ai",
+  sora: "https://openai.com/sora",
+  kling: "https://klingai.com",
+  capcut: "https://www.capcut.com",
+  vrew: "https://vrew.voyagerx.com",
+  suno: "https://suno.com",
+  elevenlabs: "https://elevenlabs.io",
+  heygen: "https://www.heygen.com",
+  "notion-ai": "https://www.notion.com/product/ai",
+  figma: "https://www.figma.com",
+  cursor: "https://www.cursor.com",
+};
 
 async function getCategories(): Promise<Category[]> {
   const { data, error } = await supabase
@@ -24,7 +47,10 @@ async function getCategories(): Promise<Category[]> {
     console.error("Failed to load categories", error);
     return [];
   }
-  return (data ?? []) as Category[];
+  const categories = (data ?? []) as Category[];
+  // AI 트렌드 is a rotating catch-all, not a single tool — pin it last regardless
+  // of click_count so it doesn't jump around the menu as it gets popular.
+  return [...categories.filter((c) => !c.is_trend), ...categories.filter((c) => c.is_trend)];
 }
 
 async function getVideosForCategory(categoryId: string): Promise<Video[]> {
@@ -56,18 +82,6 @@ async function getVideoById(id: string): Promise<Video | null> {
 
   if (error) return null;
   return data as Video | null;
-}
-
-async function getGuidebookSections(categoryId: string): Promise<GuidebookSection[]> {
-  const { data, error } = await supabase
-    .from("guidebook_sections")
-    .select("*")
-    .eq("category_id", categoryId)
-    .eq("is_published", true)
-    .order("sort_order", { ascending: true });
-
-  if (error) return [];
-  return (data ?? []) as GuidebookSection[];
 }
 
 // Recency-first: pull the most recently published videos across every
@@ -190,8 +204,6 @@ export default async function HomePage({
   }
   if (!selectedVideo) selectedVideo = videos[0] ?? null;
 
-  const guidebookSections = selectedCategory ? await getGuidebookSections(selectedCategory.id) : [];
-
   return (
     <div className="flex flex-col gap-10">
       {!isDeepLink && (
@@ -236,6 +248,16 @@ export default async function HomePage({
                     트렌드
                   </span>
                 )}
+                {TOOL_SITE_URLS[selectedCategory.slug] && (
+                  <a
+                    href={TOOL_SITE_URLS[selectedCategory.slug]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-medium text-brand-600 hover:underline dark:text-brand-400"
+                  >
+                    바로가기 ↗
+                  </a>
+                )}
               </div>
             )}
             {videos.length === 0 ? (
@@ -258,7 +280,7 @@ export default async function HomePage({
           </div>
 
           <div className="lg:border-l lg:border-gray-100 lg:pl-4 dark:lg:border-gray-800">
-            <SummaryPanel video={selectedVideo} guidebookSections={guidebookSections} />
+            <SummaryPanel video={selectedVideo} />
           </div>
         </section>
       )}

@@ -1,14 +1,8 @@
-import type { GuidebookSection, Video } from "@/lib/types";
+import type { Video } from "@/lib/types";
 import AdBanner from "@/components/AdBanner";
 import { formatViewCount, formatPublishedDate, formatDuration } from "@/lib/format";
 
-export default function SummaryPanel({
-  video,
-  guidebookSections,
-}: {
-  video: Video | null;
-  guidebookSections: GuidebookSection[];
-}) {
+export default function SummaryPanel({ video }: { video: Video | null }) {
   if (!video) {
     return (
       <div className="flex h-full flex-col gap-4">
@@ -124,25 +118,6 @@ export default function SummaryPanel({
         <p className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm italic text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300">
           &ldquo;{video.takeaway}&rdquo;
         </p>
-      )}
-
-      {guidebookSections.length > 0 && (
-        <section className="flex flex-col gap-3">
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">가이드북</h3>
-          {guidebookSections.map((section) => (
-            <article
-              key={section.id}
-              className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900"
-            >
-              <h4 className="mb-1.5 text-sm font-semibold text-gray-900 dark:text-gray-100">
-                {section.title}
-              </h4>
-              <div className="prose prose-sm dark:prose-invert max-w-none text-xs text-gray-600 whitespace-pre-wrap dark:text-gray-400">
-                {section.content_markdown}
-              </div>
-            </article>
-          ))}
-        </section>
       )}
 
       <div className="flex flex-col gap-3 border-t border-gray-100 pt-4 dark:border-gray-800">
