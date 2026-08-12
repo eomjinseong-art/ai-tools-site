@@ -39,12 +39,12 @@ export default async function GuidebookPage() {
   return (
     <div className="flex flex-col gap-10">
       <header>
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">가이드북</h1>
-        <p className="mt-2 text-gray-500">AI 툴을 처음 시작하는 분들을 위한 안내입니다.</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">가이드북</h1>
+        <p className="mt-2 text-gray-500 dark:text-gray-400">AI 툴을 처음 시작하는 분들을 위한 안내입니다.</p>
       </header>
 
       {generalSections.length === 0 && categories.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-gray-300 bg-white p-12 text-center text-gray-500">
+        <div className="rounded-xl border border-dashed border-gray-300 bg-white p-12 text-center text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
           아직 등록된 가이드북 콘텐츠가 없습니다.
         </div>
       ) : (
@@ -54,12 +54,12 @@ export default async function GuidebookPage() {
               {generalSections.map((section) => (
                 <article
                   key={section.id}
-                  className="rounded-xl border border-gray-200 bg-white p-6"
+                  className="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900"
                 >
-                  <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h2 className="text-lg font-semibold text-gray-900 mb-2 dark:text-gray-100">
                     {section.title}
                   </h2>
-                  <div className="prose prose-sm max-w-none text-gray-600 whitespace-pre-wrap">
+                  <div className="prose prose-sm dark:prose-invert max-w-none text-gray-600 whitespace-pre-wrap dark:text-gray-400">
                     {section.content_markdown}
                   </div>
                 </article>
@@ -68,7 +68,7 @@ export default async function GuidebookPage() {
           )}
 
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">
               카테고리별 가이드
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -76,7 +76,7 @@ export default async function GuidebookPage() {
                 <Link
                   key={category.id}
                   href={`/category/${category.slug}`}
-                  className="rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-700 hover:border-brand-500 hover:text-brand-600 text-center"
+                  className="rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-700 hover:border-brand-500 hover:text-brand-600 text-center dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:text-brand-400"
                 >
                   {category.name}
                 </Link>

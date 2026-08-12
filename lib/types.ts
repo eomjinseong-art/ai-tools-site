@@ -27,6 +27,10 @@ export interface Video {
   duration_seconds: number | null;
   summary: string | null;
   summary_points: string[] | null;
+  hook: string | null;
+  tool_features: string[] | null;
+  difficulty: string | null;
+  takeaway: string | null;
   transcript_lang: string | null;
   rank: number | null;
   status: VideoStatus;

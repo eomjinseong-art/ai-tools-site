@@ -6,9 +6,9 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <article className="prose prose-sm max-w-3xl mx-auto text-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900">이용약관</h1>
-      <p className="text-gray-500">시행일: 2026년 8월 12일</p>
+    <article className="prose prose-sm dark:prose-invert max-w-3xl mx-auto text-gray-700 dark:text-gray-300">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">이용약관</h1>
+      <p className="text-gray-500 dark:text-gray-400">시행일: 2026년 8월 12일</p>
 
       <h2>제1조 (목적)</h2>
       <p>

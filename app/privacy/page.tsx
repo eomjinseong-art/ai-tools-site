@@ -6,9 +6,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <article className="prose prose-sm max-w-3xl mx-auto text-gray-700">
-      <h1 className="text-2xl font-bold text-gray-900">개인정보처리방침</h1>
-      <p className="text-gray-500">시행일: 2026년 8월 12일</p>
+    <article className="prose prose-sm dark:prose-invert max-w-3xl mx-auto text-gray-700 dark:text-gray-300">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">개인정보처리방침</h1>
+      <p className="text-gray-500 dark:text-gray-400">시행일: 2026년 8월 12일</p>
 
       <p>
         나두AI(이하 &ldquo;사이트&rdquo;)는 이용자의 개인정보를 소중히 다루며, 관련 법령을

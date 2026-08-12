@@ -9,4 +9,10 @@ html {
 body {
   color: #111827;
   background-color: #f9fafb;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dark body {
+  color: #e5e7eb;
+  background-color: #0b1220;
 }

@@ -83,7 +83,7 @@ export default async function CategoryPage({
       <div className="flex flex-col gap-8">
         <header>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{category.name}</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">{category.name}</h1>
             {category.is_trend && (
               <span className="rounded-full bg-brand-600 px-2.5 py-0.5 text-xs font-semibold text-white">
                 트렌드
@@ -91,28 +91,28 @@ export default async function CategoryPage({
             )}
           </div>
           {category.description && (
-            <p className="mt-2 text-gray-500">{category.description}</p>
+            <p className="mt-2 text-gray-500 dark:text-gray-400">{category.description}</p>
           )}
         </header>
 
         {guidebookSections.length > 0 && (
           <section className="flex flex-col gap-4">
-            <h2 className="text-lg font-semibold text-gray-900">가이드북</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">가이드북</h2>
             {guidebookSections.map((section) => (
               <article
                 key={section.id}
-                className="rounded-xl border border-gray-200 bg-white p-5"
+                className="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900"
               >
-                <h3 className="font-semibold text-gray-900 mb-2">{section.title}</h3>
-                <div className="prose prose-sm max-w-none text-gray-600 whitespace-pre-wrap">
+                <h3 className="font-semibold text-gray-900 mb-2 dark:text-gray-100">{section.title}</h3>
+                <div className="prose prose-sm dark:prose-invert max-w-none text-gray-600 whitespace-pre-wrap dark:text-gray-400">
                   {section.content_markdown}
                 </div>
                 {section.source_video_ids.length > 0 && (
-                  <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 border-t border-gray-100 pt-3 text-xs text-gray-400">
-                    <span className="text-gray-400">출처:</span>
+                  <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 border-t border-gray-100 pt-3 text-xs text-gray-400 dark:border-gray-800 dark:text-gray-500">
+                    <span className="text-gray-400 dark:text-gray-500">출처:</span>
                     {section.source_video_ids.map((id) =>
                       sourceVideoTitles.has(id) ? (
-                        <Link key={id} href={`/video/${id}`} className="hover:text-brand-600 hover:underline">
+                        <Link key={id} href={`/video/${id}`} className="hover:text-brand-600 hover:underline dark:hover:text-brand-400">
                           {sourceVideoTitles.get(id)}
                         </Link>
                       ) : null,
@@ -125,9 +125,9 @@ export default async function CategoryPage({
         )}
 
         <section>
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">추천 영상</h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">추천 영상</h2>
           {videos.length === 0 ? (
-            <div className="rounded-xl border border-dashed border-gray-300 bg-white p-10 text-center text-gray-500">
+            <div className="rounded-xl border border-dashed border-gray-300 bg-white p-10 text-center text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
               아직 수집된 영상이 없습니다. 곧 업데이트될 예정입니다.
             </div>
           ) : (

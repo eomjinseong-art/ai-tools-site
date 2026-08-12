@@ -16,7 +16,7 @@ export default async function AdBanner({
       href={ad.link_url}
       target="_blank"
       rel="noopener noreferrer sponsored"
-      className={`block overflow-hidden rounded-xl border border-gray-200 bg-gray-50 ${className ?? ""}`}
+      className={`block overflow-hidden rounded-xl border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900 ${className ?? ""}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={ad.image_url} alt={ad.alt_text ?? ad.name} className="w-full h-auto object-cover" />
