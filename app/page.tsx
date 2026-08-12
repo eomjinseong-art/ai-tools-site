@@ -6,6 +6,11 @@ import CategoryMenu from "@/components/CategoryMenu";
 import VideoCard from "@/components/VideoCard";
 import SummaryPanel from "@/components/SummaryPanel";
 
+// Always fetch fresh: click counts, admin ad/keyword edits, and newly
+// collected videos/guidebook sections should never be served from a stale
+// cached fetch response.
+export const dynamic = "force-dynamic";
+
 async function getCategories(): Promise<Category[]> {
   const { data, error } = await supabase
     .from("categories")
