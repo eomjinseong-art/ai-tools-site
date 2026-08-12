@@ -6,6 +6,7 @@ export interface Category {
   search_keywords: string[];
   is_trend: boolean;
   sort_order: number;
+  click_count: number;
   icon_url: string | null;
   created_at: string;
 }
@@ -55,8 +56,23 @@ export type AdPlacement =
   | "home_top"
   | "home_bottom"
   | "category_sidebar"
+  | "category_sidebar_1"
+  | "category_sidebar_2"
+  | "category_sidebar_3"
+  | "category_sidebar_4"
   | "video_inline"
   | "guidebook_footer";
+
+export const AD_PLACEMENTS: AdPlacement[] = [
+  "home_top",
+  "home_bottom",
+  "category_sidebar_1",
+  "category_sidebar_2",
+  "category_sidebar_3",
+  "category_sidebar_4",
+  "video_inline",
+  "guidebook_footer",
+];
 
 export interface Ad {
   id: string;
