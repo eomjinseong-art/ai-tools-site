@@ -183,10 +183,10 @@ export default async function HomePage({
     );
   }
 
-  // A category/video deep link (from the carousel, guidebook page, or a
-  // shared link) should land directly on that content, not on the marketing
-  // hero — showing the hero on every navigation made it feel like every
-  // click "reset" back to the landing page.
+  // A category/video deep link (from the carousel or a shared link) should
+  // land directly on that content, not on the marketing hero — showing the
+  // hero on every navigation made it feel like every click "reset" back to
+  // the landing page.
   const isDeepLink = Boolean(searchParams.category);
 
   const [categories, carouselVideos] = await Promise.all([
