@@ -24,7 +24,7 @@ const TOOL_SITE_URLS: Record<string, string> = {
   midjourney: "https://www.midjourney.com",
   runway: "https://runwayml.com",
   higgsfield: "https://higgsfield.ai",
-  sora: "https://openai.com/sora",
+  seedance: "https://dreamina.capcut.com/seedance",
   kling: "https://klingai.com",
   capcut: "https://www.capcut.com",
   vrew: "https://vrew.voyagerx.com",
